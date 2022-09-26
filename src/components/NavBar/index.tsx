@@ -3,20 +3,23 @@ import { IconBtn, NavTouchable, NavWrapper } from './styles';
 
 import homeBtn from '../../assets/House_01.png';
 import searchBtn from '../../assets/Search_Magnifying_Glass.png';
-import user from '../../assets/User.png';
+import { useAuth } from '../../hooks/useAuth';
 
-const NavBar = () => (
-  <NavWrapper>
-    <NavTouchable>
-      <IconBtn source={searchBtn} />
-    </NavTouchable>
-    <NavTouchable>
-      <IconBtn source={homeBtn} />
-    </NavTouchable>
-    <NavTouchable>
-      <ImgRound source={user} size="48px" />
-    </NavTouchable>
-  </NavWrapper>
-);
+const NavBar = () => {
+  const { user } = useAuth();
+  return (
+    <NavWrapper>
+      <NavTouchable>
+        <IconBtn source={searchBtn} />
+      </NavTouchable>
+      <NavTouchable>
+        <IconBtn source={homeBtn} />
+      </NavTouchable>
+      <NavTouchable>
+        <ImgRound source={{ uri: user?.photo }} size="48px" />
+      </NavTouchable>
+    </NavWrapper>
+  );
+};
 
 export default NavBar;

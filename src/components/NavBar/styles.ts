@@ -8,7 +8,7 @@ export const NavWrapper = styled.View`
   align-items: center;
 
   width: 100%;
-  height: 9%;
+  height: 64px;
 `;
 
 export const NavTouchable = styled.TouchableOpacity``;

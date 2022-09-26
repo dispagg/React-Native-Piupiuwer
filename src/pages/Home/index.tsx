@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import { PiuInterface } from '../../interfaces';
 import api from '../../services/api';
 import Home from '../../templates/Home';
 
 function HomePage() {
-  const [Pius, setPius] = useState([]);
+  const [Pius, setPius] = useState<PiuInterface[]>([]);
 
   const getPius = async () => {
     const response = await api.get('/pius');
@@ -18,7 +19,7 @@ function HomePage() {
   );
 
   return (
-    <Home pius={Pius} />
+    <Home pius={Pius} setPius={setPius} />
   );
 }
 

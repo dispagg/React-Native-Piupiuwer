@@ -13,13 +13,14 @@ import formatDate from '../../utils/formatDate';
 import heart from '../../assets/Heart.png';
 import heartFilled from '../../assets/Heart_Fill.png';
 import api from '../../services/api';
+import { useAuth } from '../../hooks/useAuth';
 
 const ViewPost: React.FC<PiuInterface> = ({
   user, text, created_at, likes, id,
 }) => {
+  const { user: myUser } = useAuth();
   const [LikeCount, setLikeCount] = useState(likes.length || 0);
-  const [IsLiked, setIsLiked] = useState(false);
-  // likes.some((e) => e.user.id === currentUser.id),
+  const [IsLiked, setIsLiked] = useState(likes.some((e) => e.user.id === myUser?.id));
 
   const handleLike = async () => {
     setIsLiked(!IsLiked);

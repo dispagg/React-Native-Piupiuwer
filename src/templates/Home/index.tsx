@@ -13,9 +13,10 @@ import MakePost from '../../components/MakePost';
 
 interface HomeInterface {
   pius: PiuInterface[]
+  setPius: React.Dispatch<React.SetStateAction<PiuInterface[]>>
 }
 
-const Home: React.FC<HomeInterface> = ({ pius }) => (
+const Home: React.FC<HomeInterface> = ({ pius, setPius }) => (
 
   <>
     <StatusBar />
@@ -23,7 +24,7 @@ const Home: React.FC<HomeInterface> = ({ pius }) => (
       <HeaderWrapper>
         <LogoImg source={Logo} />
       </HeaderWrapper>
-      <MakePost />
+      <MakePost pius={pius} setPius={setPius} />
       <PiuContainer>
         {pius.map((piu) => (
           <ViewPost

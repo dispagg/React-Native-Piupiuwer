@@ -2,7 +2,7 @@ import React from 'react';
 import { RoundImage } from './styles';
 
 interface ImgInterface {
-  source: string | { uri: string};
+  source: string | { uri?: string };
   size: string;
 }
 

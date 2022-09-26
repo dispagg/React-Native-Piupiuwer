@@ -1,7 +1,7 @@
 import React, {
   createContext, useContext, useEffect, useState,
 } from 'react';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../services/api';
 import { UserInterface } from '../interfaces';
 
@@ -28,13 +28,15 @@ const AuthProvider:React.FC<{children: React.ReactNode}> = ({ children }) => {
 
     await AsyncStorage.multiSet([
       ['@piupiuwer:token', token],
-      ['@piupiuwer:user', `${user}`],
+      ['@piupiuwer:user', JSON.stringify(user)],
     ]);
+
+    // console.log(token);
   };
 
   const recoverData = async () => {
     const token = await AsyncStorage.getItem('@piupiuwer:token');
-    const user = JSON.parse(await AsyncStorage.getItem('@piupiuwer:user') || '');
+    const user = JSON.parse(JSON.stringify(await AsyncStorage.getItem('@piupiuwer:user')));
     if (token && user) { setUser(user); }
   };
 
